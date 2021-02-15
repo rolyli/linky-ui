@@ -1,0 +1,32 @@
+@media (min-width: 1200px) {
+  .app {
+    width: 36vw;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.navbar {
+  padding: 0;
+}
+
+.navbar-list {
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+ul.navbar-list > li {
+  display: inline-block;
+  margin: 1.3rem 1rem;
+}
+
+h1 {
+  color: #636363;
+}
+
+a {
+  color: #636363;
+}
