@@ -1,6 +1,6 @@
 # linky-ui
 
-This is the remote for the git submodule for linky-backend. It was bootstrapped with create-react-app and forms the front-end for the linky project.
+This is the remote for the git submodule for [linky-backend](https://github.com/rolyli/linky-backend). It was bootstrapped with create-react-app and forms the front-end for the linky project.
 
 ## Available Scripts
 
