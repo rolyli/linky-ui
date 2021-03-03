@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "./axios";
 
 import { Image } from "./components/image";
-import { TwitterImage } from "./components/twitterImage";
 import { Pagination } from "./components/pagination";
 import { Button, Card } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
@@ -30,9 +29,9 @@ const Posts = () => {
   const [page, setPage] = useState(0);
 
   useEffect(() => {
-    axios.get(`/posts/${page}`).then((res) => {
+    axios.get(`api/posts/${page}`).then((res) => {
       res.data.forEach((post) => {
-        post.date = new Date(post.date).toDateString();
+        post.date = new Date(post.createdAt).toDateString();
       });
       setPosts(res.data);
     });
@@ -40,7 +39,7 @@ const Posts = () => {
 
   useEffect(() => {
     document.title = "Linky";
-  }, [])
+  }, []);
 
   return (
     <div>
@@ -54,7 +53,6 @@ const Posts = () => {
         <Card key={post._id} className="mb-5">
           <Image postid={post._id} src={post.attachment} />
 
-
           <Card.Body style={{ opacity: 0.8 }}>
             <Card.Text className="my-1">
               {post.text && post.text.replace(/https:\/\/t.co\/[^ ]*/, "")}
@@ -64,10 +62,21 @@ const Posts = () => {
                 </a>
               )}
             </Card.Text>
-            <Card.Text className="float-left mb-1">{post.date}</Card.Text>
-            <Card.Text className="float-right">
-              <i className="fas fa-share"></i>
-              <i className="fas fa-heart mx-2"></i>
+            <div style={{ overflow: "auto" }}>
+              <Card.Text className="float-left mb-1">{post.date}</Card.Text>
+              <Card.Text className="float-right">
+                <i className="fas fa-share"></i>
+                <i className="fas fa-heart mx-2"></i>
+              </Card.Text>
+            </div>
+            {post.comment.map((comment) => (
+              <Card.Text>
+                <span><b>{comment.username}</b></span>
+                <span className="ml-3">{comment.text}</span> 
+              </Card.Text>
+            ))}
+            <Card.Text>
+             See full post 
             </Card.Text>
           </Card.Body>
         </Card>
@@ -88,11 +97,7 @@ const About = () => {
     document.title = "About";
   }, []);
 
-  return (
-    <p className="mx-1 mt-4">
-      Linky
-    </p>
-  );
+  return <p className="mx-1 mt-4">Linky</p>;
 };
 
 const App = () => {

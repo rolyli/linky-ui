@@ -8,7 +8,7 @@ const Image = (props) => {
   }, []);
 
   const onError = () => {
-    setSrc("/logo192.png");
+    setSrc(["/logo192.png"]);
   };
 
   return src.length > 1 ? (
