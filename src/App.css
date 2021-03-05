@@ -27,6 +27,6 @@ h1 {
   color: #636363;
 }
 
-a {
+a, a:hover {
   color: #636363;
 }
