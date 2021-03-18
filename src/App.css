@@ -6,8 +6,10 @@
   }
 }
 
-.navbar {
-  padding: 0;
+@media (min-width: 576px) {
+  .navbar {
+    padding: 0 20rem;
+  }
 }
 
 .navbar-list {
@@ -27,6 +29,7 @@ h1 {
   color: #636363;
 }
 
-a, a:hover {
+a,
+a:hover {
   color: #636363;
 }
