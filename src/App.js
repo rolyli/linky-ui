@@ -15,6 +15,8 @@ import {
   useLocation,
 } from "react-router-dom";
 
+import { Login } from "./pages/Login"
+
 import "./App.css";
 
 const Posts = (props) => {
@@ -97,10 +99,6 @@ const About = () => {
   return <p className="mx-1 mt-4">Linky</p>;
 };
 
-const Login = () => {
-
-}
-
 const App = () => {
   return (
     <Router>
@@ -115,6 +113,7 @@ const App = () => {
             <About />
           </Route>
           <Route path="/post/:id" children={<Post />}></Route>
+          <Route path="/login" component={ Login }></Route>
         </Switch>
       </div>
     </Router>

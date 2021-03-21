@@ -6,7 +6,7 @@
   }
 }
 
-@media (min-width: 576px) {
+@media (min-width: 1200px) {
   .navbar {
     padding: 0 20rem;
   }

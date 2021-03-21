@@ -32,8 +32,9 @@ const NavbarEl = () => {
             </NavDropdown.Item>
           </NavDropdown>{" "}
         </Nav>{" "}
-
-        <Button>Log In</Button>
+        <Link to="/login">
+          <Button>Login</Button>
+        </Link>
       </Navbar.Collapse>
     </Navbar>
   );
