@@ -5,7 +5,7 @@ const Image = (props) => {
   const [src, setSrc] = useState([]);
   useEffect(() => {
     setSrc(props.src);
-  }, []);
+  }, [props.src]);
 
   const onError = () => {
     setSrc(["/logo192.png"]);
@@ -17,6 +17,7 @@ const Image = (props) => {
         return (
           <Carousel.Item key={props.postid.concat(index)}>
             <img
+              alt="Post"
               className="w-100 h-auto"
               {...props}
               src={src}
@@ -27,7 +28,7 @@ const Image = (props) => {
       })}
     </Carousel>
   ) : (
-    <img className="w-100 h-auto" {...props} src={src} onError={onError} />
+    <img alt="Post" className="w-100 h-auto" {...props} src={src} onError={onError} />
   );
 };
 

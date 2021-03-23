@@ -5,17 +5,11 @@ import axios from "./axios";
 import { Image } from "./components/image";
 import { Pagination } from "./components/pagination";
 import { NavbarEl } from "./components/navbar";
-import { Post } from "./components/post"
-import { Button, Card } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  useLocation,
-} from "react-router-dom";
+import { Post } from "./components/post";
+import { Card } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import { Login } from "./pages/Login"
+import { Login, Signup } from "./pages/Login";
 
 import "./App.css";
 
@@ -100,20 +94,32 @@ const About = () => {
 };
 
 const App = () => {
+  const [user, setUser] = useState("hi");
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log(token)
+    if (token) {
+      setUser(token);
+    }
+  }, []);
   return (
     <Router>
       <div className="App">
-        <NavbarEl />
+        <NavbarEl user={user}/>
         <Switch>
           <Route exact path="/">
-            <Posts className="app"/>
+            <Posts className="app" />
           </Route>
 
           <Route path="/about">
             <About />
           </Route>
           <Route path="/post/:id" children={<Post />}></Route>
-          <Route path="/login" component={ Login }></Route>
+          <Route path="/login" render={(props) => <Login setUser={setUser} {...props} />}></Route>
+          <Route
+            path="/signup"
+            render={(props) => <Signup setUser={setUser} {...props} />}
+          ></Route>
         </Switch>
       </div>
     </Router>
