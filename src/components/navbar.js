@@ -1,10 +1,5 @@
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Button,
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 
 const NavbarEl = (props) => {
   return (
@@ -30,9 +25,22 @@ const NavbarEl = (props) => {
             </NavDropdown.Item>
           </NavDropdown>{" "}
         </Nav>{" "}
-        <Link to="/login">
-          <Button>Login</Button>
-        </Link>
+        {props.user ? (
+          <NavDropdown title={props.user.username}>
+            <NavDropdown.Item
+              onClick={() => {
+                props.setUser();
+                localStorage.removeItem("user");
+              }}
+            >
+              Sign out
+            </NavDropdown.Item>
+          </NavDropdown>
+        ) : (
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
       </Navbar.Collapse>
     </Navbar>
   );

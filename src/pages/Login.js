@@ -2,7 +2,6 @@ import { Form, Button } from "react-bootstrap";
 import axios from "../axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
 const Signup = (props) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -69,8 +68,7 @@ const Login = (props) => {
     try {
       const res = await axios.post("/api/user/login", { username, password });
       if (res.data) {
-        localStorage.setItem("token", res.data);
-        console.log(res.data)
+        localStorage.setItem("user", JSON.stringify(res.data));
         props.setUser(res.data);
         props.history.push("/");
       }

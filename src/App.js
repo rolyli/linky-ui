@@ -94,18 +94,18 @@ const About = () => {
 };
 
 const App = () => {
-  const [user, setUser] = useState("hi");
+  const [user, setUser] = useState();
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    console.log(token)
-    if (token) {
-      setUser(token);
+    let user = localStorage.getItem("user");
+    if (user) {
+      user = JSON.parse(user);
+      setUser(user);
     }
   }, []);
   return (
     <Router>
       <div className="App">
-        <NavbarEl user={user}/>
+        <NavbarEl user={user} setUser={setUser} />
         <Switch>
           <Route exact path="/">
             <Posts className="app" />
@@ -115,7 +115,10 @@ const App = () => {
             <About />
           </Route>
           <Route path="/post/:id" children={<Post />}></Route>
-          <Route path="/login" render={(props) => <Login setUser={setUser} {...props} />}></Route>
+          <Route
+            path="/login"
+            render={(props) => <Login setUser={setUser} {...props} />}
+          ></Route>
           <Route
             path="/signup"
             render={(props) => <Signup setUser={setUser} {...props} />}
