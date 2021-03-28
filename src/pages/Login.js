@@ -80,7 +80,7 @@ const Login = (props) => {
   };
 
   return (
-    <div className="app">
+    <div className="app login">
       <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formBasicEmail">
           <Form.Label>Email address</Form.Label>

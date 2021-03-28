@@ -21,7 +21,7 @@ const Post = () => {
     });
   }, [location]);
   return (
-    <div>
+    <div className="app">
       {post && Object.keys(post).length > 0 ? (
         <Card key={post._id} className="mb-5">
           <Card.Header>
