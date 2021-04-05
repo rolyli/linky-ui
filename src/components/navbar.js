@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
+import React from "react";
 
 const NavbarEl = (props) => {
   return (
@@ -25,7 +26,9 @@ const NavbarEl = (props) => {
             </NavDropdown.Item>
           </NavDropdown>{" "}
         </Nav>{" "}
+        {props.user && <Link to="/submit"><Button>Create Post</Button></Link>}
         {props.user ? (
+
           <NavDropdown title={props.user.username}>
             <NavDropdown.Item
               onClick={() => {
@@ -36,6 +39,7 @@ const NavbarEl = (props) => {
               Sign out
             </NavDropdown.Item>
           </NavDropdown>
+
         ) : (
           <Link to="/login">
             <Button>Login</Button>

@@ -6,11 +6,12 @@ import { Image } from "./components/image";
 import { Pagination } from "./components/pagination";
 import { NavbarEl } from "./components/navbar";
 import { Post } from "./components/post";
-import { Card } from "react-bootstrap";
+import { Card, Button, Form } from "react-bootstrap";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 
 import { Login, Signup } from "./pages/Login";
+import { Submit } from "./pages/Submit"
 
 import "./App.css";
 
@@ -132,7 +133,10 @@ const App = () => {
           <Route path="/about">
             <About />
           </Route>
-          <Route path="/post/:id" children={<Post />}></Route>
+          <Route
+            path="/post/:id"
+            render={(props) => <Post user={user} />}
+          ></Route>
           <Route
             path="/login"
             render={(props) => <Login setUser={setUser} {...props} />}
@@ -140,6 +144,10 @@ const App = () => {
           <Route
             path="/signup"
             render={(props) => <Signup setUser={setUser} {...props} />}
+          ></Route>
+          <Route
+            path="/submit"
+            render={(props) => <Submit user={user} />}
           ></Route>
         </Switch>
       </div>

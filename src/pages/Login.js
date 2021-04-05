@@ -104,7 +104,7 @@ const Login = (props) => {
           />
         </Form.Group>
         <Form.Text>
-          Don't have an account? Sign up <Link to="/signup">here.</Link>
+          Don't have an account? Sign up <Link to="/signup"><u>here.</u></Link>
         </Form.Text>
         <Form.Text>{message}</Form.Text>
 
