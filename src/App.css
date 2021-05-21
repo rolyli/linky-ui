@@ -7,26 +7,33 @@
   }
 }
 
+.card-header {
+  background-color: #ffffff;
+}
+
+.card-ranking {
+  background-color: #f2f2f2;
+}
+
 .login {
-  background-color: #FFFFFF!important;
+  background-color: #ffffff !important;
   margin-top: 3rem;
   padding: 3rem 3rem;
 }
 
 .comment {
-  background-color: #FFFFFF!important;
+  background-color: #ffffff !important;
   padding: 3rem 3rem;
   margin: 3rem 0rem;
 }
 
 .submit {
   height: 5rem;
-  overflow: scroll!important;
-
+  overflow: scroll !important;
 }
 
 .navbar {
-  background-color: #FFFFFF!important;
+  background-color: #ffffff !important;
 }
 
 @media (min-width: 1200px) {
