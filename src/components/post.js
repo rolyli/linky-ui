@@ -107,7 +107,7 @@ const Post = (props) => {
             )}
 
             <hr />
-            {post.comment.map((comment) => (
+            {post.comment.length > 0 && post.comment.map((comment) => (
               <Card.Text>
                 <span>
                   <b>{comment.username}</b>
