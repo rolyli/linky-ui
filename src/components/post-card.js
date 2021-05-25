@@ -12,9 +12,8 @@ const PostCard = ({ post, user }, props) => {
   const [vote, setVote] = useState(0);
 
   const upvote = async (id, user) => {
-
     if (!user) {
-      history.push('Login')
+      history.push("Login");
     }
 
     try {
@@ -26,16 +25,12 @@ const PostCard = ({ post, user }, props) => {
 
       if (res.data === 1) {
         setVote(vote + 1);
-
       } else {
         setVote(vote - 1);
       }
-
     } catch (error) {
       console.log("Message send failed.", error);
     }
-
-
   };
 
   useEffect(() => {
@@ -43,53 +38,39 @@ const PostCard = ({ post, user }, props) => {
   }, [post.upvote.length]);
 
   return (
-    <Card {...props} className="mb-5">
-      
-      <div className="d-flex p-0 m-0 rounded">
-          <div className="card-ranking rounded-left p-0 text-center">
-            <button className="border-0" onClick={() => upvote(post._id, user)}>↑</button>
-            <p>{vote}</p>
-          </div>
-          <div className="p-0 flex-grow-1">
-            <Card.Header>
-              <div className="overflow-auto">
-                <p className="float-left">
-                  Posted by {post.username} on {post.date}
-                </p>
-              </div>
-              <p>
-                <b>{post.title}</b>
-              </p>
-            </Card.Header>
-            {post.attachment.length > 0 && (
-              <Image postid={post._id} src={post.attachment} />
-            )}
-
-            <Card.Body style={{ opacity: 0.8 }}>
-              <Card.Text className="my-1">{post.text}</Card.Text>
-              <div style={{ overflow: "auto" }}>
-                <Card.Text className="float-right">
-                  <i className="fas fa-share"></i>
-                  <i className="fas fa-heart mx-2"></i>
-                </Card.Text>
-              </div>
-              {post.comment.map((comment) => (
-                <Card.Text>
-                  <span>
-                    <b>{comment.username}</b>
-                  </span>
-                  <span className="ml-3">{comment.text}</span>
-                </Card.Text>
-              ))}
-              <Card.Text>
-                <Link to={{ pathname: "/post/" + post._id }}>
-                  See all {post.comment_count} comments
-                </Link>
-              </Card.Text>
-            </Card.Body>
-          </div>
+    <div {...props} className="card-layout d-flex">
+      <div className="card-ranking">
+        <button className="border-0" onClick={() => upvote(post._id, user)}>
+          ↑
+        </button>
+        <p>{vote}</p>
       </div>
-    </Card>
+
+      <div className="card-right w-100">
+        <div className="card-bottom p-0 flex-grow-1">
+          <div>
+            <div className="overflow-auto">
+              <h3 className="card-title">
+                Posted by {post.username} on {post.date}
+              </h3>
+            </div>
+            <h2>
+              <p>{post.title}</p>
+            </h2>
+          </div>
+          {post.attachment.every((val, index) => val !== "") && (
+            <Image postid={post._id} src={post.attachment} />
+          )}
+            <p>{post.text}</p>
+          <div className="card-bottom">
+
+            <Link to={{ pathname: "/post/" + post._id}}>
+              See all {post.comment_count} comments
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

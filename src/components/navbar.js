@@ -10,25 +10,13 @@ const NavbarEl = (props) => {
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto">
-          <Navbar.Text>
-            <Link to="/about">About</Link>
-          </Navbar.Text>
-          <NavDropdown title="Topics" id="basic-nav-dropdown">
-            <NavDropdown.Item href="#action/2.1">Action</NavDropdown.Item>
-            <NavDropdown.Item href="#action/2.2">
-              Another action
-            </NavDropdown.Item>
-            <NavDropdown.Item href="#action/2.3">Something</NavDropdown.Item>
-            <NavDropdown.Divider />
-            <NavDropdown.Item href="#action/2.4">
-              Separated link
-            </NavDropdown.Item>
-          </NavDropdown>{" "}
-        </Nav>{" "}
-        {props.user && <Link to="/submit"><Button>Create Post</Button></Link>}
+        <Nav className="mr-auto"></Nav>{" "}
+        {props.user && (
+          <Link to="/submit">
+            <Button>Create Post</Button>
+          </Link>
+        )}
         {props.user ? (
-
           <NavDropdown title={props.user.username}>
             <NavDropdown.Item
               onClick={() => {
@@ -39,11 +27,15 @@ const NavbarEl = (props) => {
               Sign out
             </NavDropdown.Item>
           </NavDropdown>
-
         ) : (
-          <Link to="/login">
-            <Button>Login</Button>
-          </Link>
+          <div>
+            <Link to="/login">
+              <Button>Log in</Button>
+            </Link>
+            <Link to="/signup">
+              <Button className="ml-2 btn-secondary">Sign up</Button>
+            </Link>
+          </div>
         )}
       </Navbar.Collapse>
     </Navbar>

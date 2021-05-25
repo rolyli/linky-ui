@@ -48,9 +48,7 @@ const Posts = (props) => {
         scrollThreshold={0.95}
       >
         {posts.map((post) => (
-          <div key={post._id} className="mb-5">
             <PostCard key={post._id} post={post} user={props.user}></PostCard>
-          </div>
         ))}
       </InfiniteScroll>
     </div>
@@ -67,6 +65,7 @@ const About = () => {
 
 const App = () => {
   const [user, setUser] = useState();
+
   useEffect(() => {
     console.log(document.body.clientHeight);
     console.log(window.scrollY);

@@ -14,12 +14,10 @@ const Post = (props) => {
   const id = pathname[pathname.length - 1];
 
   useEffect(() => {
-    setPost(location.state);
-    // todo: conditionally make axios request
-    axios.get("api/post/" + id).then((res) => {
+    axios.get("/api/post/" + id).then((res) => {
       setPost(res.data[0]);
     });
-  }, [id, location]);
+  }, [id]);
 
   const [text, setText] = useState("");
 
@@ -107,14 +105,15 @@ const Post = (props) => {
             )}
 
             <hr />
-            {post.comment.length > 0 && post.comment.map((comment) => (
-              <Card.Text>
-                <span>
-                  <b>{comment.username}</b>
-                </span>
-                <span className="ml-3">{comment.text}</span>
-              </Card.Text>
-            ))}
+            {post &&
+              post.comment.map((comment) => (
+                <Card.Text>
+                  <span>
+                    <b>{comment.username}</b>
+                  </span>
+                  <span className="ml-3">{comment.text}</span>
+                </Card.Text>
+              ))}
           </div>
         </div>
       ) : (
