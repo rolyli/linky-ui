@@ -1,3 +1,7 @@
+body {
+  font-size: 14px;
+}
+
 @media (min-width: 1200px) {
   .app {
     width: 36vw;
@@ -11,9 +15,11 @@
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 1rem;
+  background-color: #ffffff;
+
 }
 
-.card-top {
+.card-title {
   background-color: #ffffff;
   font-size: 0.8rem;
 }
@@ -25,19 +31,14 @@
   border-radius: 5%;
 }
 
-.card-right{
+.card-right {
   padding: 15px;
-  background-color: #ffffff;
-
 }
 
 .card-bottom{
   font-size:0.8rem;
 }
 
-.card-title{
-  font-size: 0.8rem;
-}
 
 h2 {
   font-weight: bold;
@@ -57,10 +58,14 @@ h2 {
   padding: 3rem 3rem;
 }
 
-.comment {
+.comment-layout {
   background-color: #ffffff !important;
-  padding: 3rem 3rem;
-  margin: 3rem 0rem;
+  padding: 1rem 3rem;
+}
+
+.comment-username {
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 .submit {
