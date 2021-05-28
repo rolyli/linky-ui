@@ -68,6 +68,11 @@ h2 {
   opacity: 0.8;
 }
 
+.comment-item {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
 .submit {
   height: 5rem;
   overflow: scroll !important;

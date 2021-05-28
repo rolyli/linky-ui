@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axios from "../axios";
 import { Button, Form } from "react-bootstrap";
 import { Image } from "./image";
+import { Comment, CommentReply } from "./comment";
 import { PostRanking } from "./post-ranking";
-import { Card } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 
 const Post = ({ user }) => {
@@ -19,21 +19,6 @@ const Post = ({ user }) => {
       setPost(res.data[0]);
     });
   }, [id]);
-
-  const [text, setText] = useState("");
-
-  const handleSubmit = async (e) => {
-    try {
-      const res = await axios.post(
-        `/api/post/${id}/comment`,
-        { text },
-        { headers: { Authorization: `Bearer ${user.token}` } }
-      );
-      console.log(res);
-    } catch (error) {
-      console.log("Message send failed.", error);
-    }
-  };
 
   return (
     <div className="card-layout app mb-5">
@@ -68,34 +53,10 @@ const Post = ({ user }) => {
               </div>
             </div>
           </div>
-
+          
           <div className="comment-layout">
             {user ? (
-              <div>
-                <Form onSubmit={handleSubmit} className="overflow-hidden mb-5">
-                  <Form.Group>
-                    <Form.Control
-                      value={text}
-                      onChange={({ target }) => setText(target.value)}
-                      placeholder="Type your comment here"
-                    />
-                  </Form.Group>
-                  <Button
-                    variant="primary"
-                    type="submit"
-                    className="float-right"
-                  >
-                    Submit
-                  </Button>
-                  <Button
-                    variant="secondary"
-                    type="submit"
-                    className="float-right mr-2"
-                  >
-                    Cancel
-                  </Button>
-                </Form>
-              </div>
+              <CommentReply post_id={id} user={user} />
             ) : (
               <div>
                 <Form className="overflow-hidden mb-5">
@@ -117,15 +78,15 @@ const Post = ({ user }) => {
             )}
 
             <hr />
-
             {post &&
               post.comment.map((comment) => (
-                <div className="comment mb-2">
-                  <div className="comment-username" >
-                    {comment.username}
-                  </div>
-                  <div className="">{comment.text}</div>
-                </div>
+                <Comment
+                  post_id={id}
+                  user={user}
+                  depth={0}
+                  key={comment.comment_id}
+                  comment={comment}
+                />
               ))}
           </div>
         </div>
