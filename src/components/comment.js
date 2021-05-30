@@ -2,7 +2,13 @@ import { useState } from "react";
 import axios from "../axios";
 import { Button, Form } from "react-bootstrap";
 
-const CommentReply = ({ post_id, user, comment_id }) => {
+const CommentReply = ({
+  post_id,
+  user,
+  comment_id,
+  buttonPress,
+  setButtonPress,
+}) => {
   const [text, setText] = useState("");
 
   const handleSubmit = () => {
@@ -37,7 +43,9 @@ const CommentReply = ({ post_id, user, comment_id }) => {
 
           <Button
             variant="secondary"
-            href={`./${post_id}`}
+            onClick={() =>
+              setButtonPress ? setButtonPress(!buttonPress) : setText("")
+            }
             className="float-right mr-2"
           >
             Cancel
@@ -69,6 +77,8 @@ const Comment = ({ post_id, comment, depth, user }) => {
           post_id={post_id}
           user={user}
           comment_id={comment.comment_id}
+          buttonPress={buttonPress}
+          setButtonPress={setButtonPress}
         />
       )}
       {comment.comment &&
