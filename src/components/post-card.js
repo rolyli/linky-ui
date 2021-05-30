@@ -25,7 +25,7 @@ const PostCard = ({ post, user }, props) => {
           <p>{post.text}</p>
           <div className="card-bottom">
             <Link to={{ pathname: "/post/" + post._id }}>
-              See all {post.comment_count} comments
+            <i class="far fa-comment-alt"></i> See all {post.comment_count} comments
             </Link>
           </div>
         </div>

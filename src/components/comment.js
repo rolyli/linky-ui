@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "../axios";
 import { Button, Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 const CommentReply = ({
   post_id,
@@ -10,6 +11,7 @@ const CommentReply = ({
   setButtonPress,
 }) => {
   const [text, setText] = useState("");
+  
 
   const handleSubmit = () => {
     comment_id
@@ -56,22 +58,29 @@ const CommentReply = ({
   );
 };
 
-const Comment = ({ post_id, comment, depth, user }) => {
+const Comment = ({ post_id, comment, depth, user, ...props }) => {
   const [buttonPress, setButtonPress] = useState(false);
+  let history = useHistory();
 
   return (
-    <div className={"ml-" + depth}>
+    <div className={"mb-2 ml-" + depth}>
       <div className="comment-username">{comment.username}</div>
       <div className="">{comment.text}</div>
 
       {!buttonPress && (
         <button
           className="bold bg-white border-0 p-0 comment-item"
-          onClick={() => setButtonPress(!buttonPress)}
+          onClick={() => {
+            if (!user) {
+              history.push("/login");
+            }
+            setButtonPress(!buttonPress);
+          }}
         >
-          Comment
+         <i class="far fa-comment-alt"></i> Reply 
         </button>
       )}
+
       {buttonPress && (
         <CommentReply
           post_id={post_id}
@@ -81,6 +90,7 @@ const Comment = ({ post_id, comment, depth, user }) => {
           setButtonPress={setButtonPress}
         />
       )}
+
       {comment.comment &&
         comment.comment.map((c) => (
           <Comment

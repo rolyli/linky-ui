@@ -19,7 +19,7 @@ const Signup = (props) => {
     } catch (error) {
       setUsername("");
       setPassword("");
-      setMessage("Unable to sign-up.");
+      setMessage("Unable to sign-up. Please try a different username.");
     }
   };
 

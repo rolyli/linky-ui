@@ -16,6 +16,7 @@ const Post = ({ user }) => {
 
   useEffect(() => {
     axios.get("/api/post/" + id).then((res) => {
+      res.data[0].date = new Date(res.data[0].createdAt).toDateString()
       setPost(res.data[0]);
     });
   }, [id]);
