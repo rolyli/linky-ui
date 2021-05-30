@@ -68,7 +68,7 @@ const Login = (props) => {
       if (res.data) {
         localStorage.setItem("user", JSON.stringify(res.data));
         props.setUser(res.data);
-        props.history.push("/");
+        props.history.goBack();
       }
     } catch (error) {
       setUsername("");
