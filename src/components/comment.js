@@ -28,7 +28,7 @@ const CommentReply = ({
   };
 
   return (
-    <div className="border border-secondary p-2 rounded">
+    <div className="border border-secondary p-2 rounded mb-2">
       <Form onSubmit={handleSubmit} className="overflow-hidden">
         <Form.Group>
           <Form.Control
@@ -63,7 +63,7 @@ const Comment = ({ post_id, comment, depth, user, ...props }) => {
   let history = useHistory();
 
   return (
-    <div className={"mb-2 ml-" + depth}>
+    <div className={"p-2 ml-" + depth + " comment-layout"}>
       <div className="comment-username">{comment.username}</div>
       <div className="">{comment.text}</div>
 

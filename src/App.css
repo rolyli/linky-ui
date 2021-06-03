@@ -58,9 +58,12 @@ h2 {
   padding: 3rem 3rem;
 }
 
-.comment-layout {
-  background-color: #ffffff !important;
-  padding: 1rem 3rem;
+.comment-layout > .comment-layout{
+  border-left: 1px solid black;
+}
+
+.comment-layout:last-child {
+ padding-bottom: 0!important; 
 }
 
 .comment-username {
@@ -88,18 +91,7 @@ h2 {
   }
 }
 
-.navbar-list {
-  margin-top: 0;
-  margin-bottom: 0;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 0;
-}
 
-ul.navbar-list > li {
-  display: inline-block;
-  margin: 1.3rem 1rem;
-}
 
 h1 {
   color: #636363;
